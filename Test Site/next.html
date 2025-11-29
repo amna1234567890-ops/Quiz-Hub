@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        :root {
+            --dark-gray: rgb(99, 19, 99);
+            --medium-gray: #4e003d;
+            --light-gray: #ffa7f8;
+            --bg-gray: #edc6ff56;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            padding: 8px;
+            color: var(--dark-gray);
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background-color: #f5f5f5;
+            border-left: 3px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        label:hover {
+            background-color: #ececec;
+        }
+
+        input[type="radio"]:checked+label {
+            background-color: #eaeaea;
+            border-left-color: #888;
+            font-weight: 500;
+        }
+
+        #btnNext {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        #btnNext:hover {
+            background-color: #444;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(50, 50, 50, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-content {
+            background: #f2f2f2;
+            padding: 25px 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        #finalScoreText {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        #restartBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #888;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #restartBtn:hover {
+            background: #666;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="non">
+        <div id="progressContainer"
+            style="width: 100%; background-color: #ddd; height: 20px; border-radius: 10px; margin: 15px 0;">
+            <div id="progressBar" style="width: 0%; height: 100%; background-color: #4caf50; border-radius: 10px;">
+            </div>
+        </div>
+
+
+        <div class="timer" id="timerDisplay">05:00</div>
+        <div class="container">
+            <h1 id="question" class="question"></h1>
+
+            <input type="radio" name="answer" id="optionOne" class="radio">
+            <label for="optionOne" id="answerOne"></label><br>
+
+            <input type="radio" name="answer" id="optionTwo" class="radio">
+            <label for="optionTwo" id="answerTwo"></label><br>
+
+            <input type="radio" name="answer" id="optionThree" class="radio">
+            <label for="optionThree" id="answerThree"></label><br>
+
+            <input type="radio" name="answer" id="optionFour" class="radio">
+            <label for="optionFour" id="answerFour"></label><br>
+        </div>
+        <h4 style="color: red;" id="erorr"></h4>
+        <button id="btnNext">Next Question</button>
+    </div>
+
+    <!-- Quiz Finish Popup -->
+    <div id="resultPopup" class="popup">
+        <div class="popup-content">
+            <h2>Quiz Completed!</h2>
+            <p id="finalScoreText"></p>
+            <a href="index.html"> <button id="restartBtn">Home Page</button></a>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
